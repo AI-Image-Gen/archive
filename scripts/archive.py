@@ -18,7 +18,7 @@ with open(output_filename, "a") as output_file:
             source_filepath = os.path.join(source_dir, filename)
             with open(source_filepath, "r") as source_file:
                 content = source_file.read()
-                output_file.write(filename.split('-')[0] + " => `" + content + "`" + "  ")
+                output_file.write(filename.split('-')[0] + " => `" + content + "`  \n")
 
 # Sort entries
 with open(output_filename, "r+") as output_file:
@@ -31,7 +31,7 @@ for line in lines:
         updated_lines.append(line)
 
 with open(output_filename, "w") as output_file:
-    for line in sorted(updated_lines, key=lambda x: int(x.split(' => ')[0].strip(' `'))):
+    for line in sorted(updated_lines, key=lambda x: int(x.split(' => ')[0])):
         output_file.write(line)
 
 print(f"Prompts merging completed")
