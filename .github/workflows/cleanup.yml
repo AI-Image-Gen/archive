@@ -1,0 +1,33 @@
+name: Archive
+
+on: 
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 12 * * *'  # Run daily at 12:00
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone repository
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Setup python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+
+    - name: Run archivization scripts
+      working-directory: scripts
+      run: |
+          sh archive.sh
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        force: true
