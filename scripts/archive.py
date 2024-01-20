@@ -18,7 +18,7 @@ with open(output_filename, "a") as output_file:
             source_filepath = os.path.join(source_dir, filename)
             with open(source_filepath, "r") as source_file:
                 content = source_file.read()
-                output_file.write(filename.split('-')[0] + " => `" + content + "`\n")
+                output_file.write(filename.split('-')[0] + " => `" + content + "`" + "  ")
 
 # Sort entries
 with open(output_filename, "r+") as output_file:
